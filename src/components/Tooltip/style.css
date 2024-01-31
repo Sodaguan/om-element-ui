@@ -1,0 +1,36 @@
+.el-popper__trigger {
+  display: inline-block;
+  /* height: 150px;
+  border: 2px dotted black;
+  margin: 150px auto; */
+}
+
+.el-popper {
+  position: absolute;
+  background: var(--el-bg-color-overlay);
+  border: 1px solid var(--el-border-color-light);
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 2;
+}
+
+.el-popper__arrow {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--el-bg-color-overlay);
+  border: 1px solid var(--el-border-color-light);
+  transform: rotate(45deg);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

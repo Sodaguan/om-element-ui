@@ -1,0 +1,159 @@
+.el-button {
+  --el-button-font-weight: var(--el-font-weight-primary);
+  --el-button-border-color: var(--el-border-color);
+  --el-button-bg-color: var(--el-fill-color-blank);
+  --el-button-text-color: var(--el-text-color-regular);
+  --el-button-disabled-text-color: var(--el-disabled-text-color);
+  --el-button-disabled-bg-color: var(--el-fill-color-blank);
+  --el-button-disabled-border-color: var(--el-border-color-light);
+  --el-button-divide-border-color: rgba(255, 255, 255, 0.5);
+  --el-button-hover-text-color: var(--el-color-primary);
+  --el-button-hover-bg-color: var(--el-color-primary-light-9);
+  --el-button-hover-border-color: var(--el-color-primary-light-7);
+  --el-button-active-text-color: var(--el-button-hover-text-color);
+  --el-button-active-border-color: var(--el-color-primary);
+  --el-button-active-bg-color: var(--el-button-hover-bg-color);
+  --el-button-outline-color: var(--el-color-primary-light-5);
+  --el-button-hover-link-text-color: var(--el-color-info);
+  --el-button-active-color: var(--el-text-color-primary);
+}
+
+.el-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--el-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: var(--el-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--el-button-bg-color);
+  border: var(--el-border);
+  border-color: var(--el-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--el-font-size-base);
+  border-radius: var(--el-border-radius-base);
+}
+
+.el-button:hover,
+.el-button:focus {
+  color: var(--el-button-hover-text-color);
+  border-color: var(--el-button-hover-border-color);
+  background-color: var(--el-button-hover-bg-color);
+  outline: none;
+}
+
+.el-button:active {
+  color: var(--el-button-active-text-color);
+  border-color: var(--el-button-active-border-color);
+  background-color: var(--el-button-active-bg-color);
+  outline: none;
+}
+
+.el-button:focus-visible {
+  outline: 2px solid var(--el-button-outline-color);
+  outline-offset: 1px;
+}
+
+.el-button > span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.el-button + .el-button {
+  margin-left: 12px;
+}
+
+.el-button.is-round {
+  padding: 8px 15px;
+}
+
+.el-button::-moz-focus-inner {
+  border: 0;
+}
+
+.el-button [class*='el-icon'] + span {
+  margin-left: 6px;
+}
+
+.el-button [class*='el-icon'] svg {
+  vertical-align: bottom;
+}
+
+.el-button.is-plain {
+  --el-button-hover-text-color: var(--el-color-primary);
+  --el-button-hover-bg-color: var(--el-fill-color-blank);
+  --el-button-hover-border-color: var(--el-color-primary);
+}
+
+.el-button.is-active {
+  color: var(--el-button-active-text-color);
+  border-color: var(--el-button-active-border-color);
+  background-color: var(--el-button-active-bg-color);
+  outline: none;
+}
+
+.el-button.is-disabled,
+.el-button.is-disabled:hover,
+.el-button.is-disabled:focus {
+  color: var(--el-button-disabled-text-color);
+  cursor: not-allowed;
+  background-image: none;
+  background-color: var(--el-button-disabled-bg-color);
+  border-color: var(--el-button-disabled-border-color);
+}
+
+.el-button.is-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.el-button.is-loading:before {
+  z-index: 1;
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: inherit;
+  background-color: var(--el-mask-color-extra-light);
+}
+
+.el-button.is-round {
+  border-radius: var(--el-border-radius-round);
+}
+
+.el-button.is-circle {
+  width: 32px;
+  border-radius: 50%;
+  padding: 8px;
+}
+
+@each $val in primary, success, warning, info, danger {
+  .el-button--$(val) {
+    --el-button-text-color: var(--el-color-white);
+    --el-button-bg-color: var(--el-color-$(val));
+    --el-button-border-color: var(--el-color-$(val));
+    --el-button-outline-color: var(--el-color-$(val)-light-5);
+    --el-button-active-color: var(--el-color-$(val)-dark-2);
+    --el-button-hover-text-color: var(--el-color-white);
+    --el-button-hover-link-text-color: var(--el-color-$(val)-light-5);
+    --el-button-hover-bg-color: var(--el-color-$(val)-light-3);
+    --el-button-hover-border-color: var(--el-color-$(val)-light-3);
+    --el-button-active-bg-color: var(--el-color-$(val)-dark-2);
+    --el-button-active-border-color: var(--el-color-$(val)-dark-2);
+    --el-button-disabled-text-color: var(--el-color-white);
+    --el-button-disabled-bg-color: var(--el-color-$(val)-light-5);
+    --el-button-disabled-border-color: var(--el-color-$(val)-light-5);
+  }
+}
