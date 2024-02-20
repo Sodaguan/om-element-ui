@@ -1,4 +1,4 @@
-import { isRef, watch, onMounted, onUnmounted } from 'vue'
+import { isRef, watch, onMounted, onUnmounted, type Ref, unref } from 'vue'
 
 export default function useEventListener(
   target: Ref<EventTarget | null> | EventTarget,
@@ -7,8 +7,8 @@ export default function useEventListener(
 ) {
   if (isRef(target)) {
     watch(target, (val, oldVal) => {
-      oldVal.removeEventListener(event, handler)
-      val.addEventListener(event, handler)
+      oldVal!.removeEventListener(event, handler)
+      val!.addEventListener(event, handler)
     })
   } else {
     onMounted(() => {
@@ -17,6 +17,6 @@ export default function useEventListener(
   }
 
   onUnmounted(() => {
-    target.removeEventListener(event, handler)
+    unref(target)!.removeEventListener(event, handler)
   })
 }
