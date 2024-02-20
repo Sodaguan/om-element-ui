@@ -8,9 +8,10 @@ export interface MessageProps {
   onDestory: () => void
   offset?: number
   id: string
+  zIndex: number
 }
 
-export type CreateMessageProps = Omit<MessageProps, 'onDestory' | 'id'>
+export type CreateMessageProps = Omit<MessageProps, 'onDestory' | 'id' | 'zIndex'>
 
 export interface MessageEmits {
   close: () => void
@@ -21,4 +22,5 @@ export interface MessageInstance {
   vNode?: VNode
   props: MessageProps
   vm: ComponentInternalInstance
+  destory: () => void
 }

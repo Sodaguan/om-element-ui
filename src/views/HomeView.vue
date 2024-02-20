@@ -14,23 +14,29 @@ onMounted(() => {
     console.log(buttonRef.value.ref)
   }
 
-  createMessage({
+  const instance = createMessage({
     message: 'hello world11111',
-    duration: 0,
-    showClose: true
+    duration: 2000,
+    showClose: true,
+    type: 'success'
   })
+
   createMessage({
     message: 'hello world22222',
     duration: 0,
-
-    showClose: true
+    showClose: true,
+    type: 'error'
   })
   createMessage({
     message: 'hello world33333',
     duration: 0,
-
-    showClose: true
+    showClose: true,
+    type: 'warning'
   })
+
+  // setTimeout(() => {
+  //   instance.destory()
+  // }, 2000)
 })
 const collapseValue = ref<NameType[]>(['2'])
 </script>

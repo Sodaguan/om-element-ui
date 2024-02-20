@@ -1,9 +1,10 @@
 import type { CreateMessageProps, MessageInstance } from './types'
 import MessageContructor from './omMessage.vue'
-import { render, h } from 'vue'
+import { render, h, shallowReactive } from 'vue'
+import useZIndex from '@/hooks/useZIndex'
 
 let seed = 1
-const instanceList: MessageInstance[] = []
+const instanceList: MessageInstance[] = shallowReactive([])
 export const createMessage = (props: CreateMessageProps) => {
   const id = `message_${seed++}`
   const dom = document.createElement('div')
@@ -15,10 +16,17 @@ export const createMessage = (props: CreateMessageProps) => {
     render(null, dom)
   }
 
+  const destory = () => {
+    const instance = instanceList.find((instance) => instance.id === id)
+    instance!.vm.exposed!.visible.value = false
+  }
+
+  const { nextZIndex } = useZIndex()
   const newProps = {
     ...props,
     onDestory,
-    id
+    id,
+    zIndex: nextZIndex()
   }
   const vNode = h(MessageContructor, newProps)
   render(vNode, dom)
@@ -28,11 +36,12 @@ export const createMessage = (props: CreateMessageProps) => {
     id,
     props: newProps,
     vNode,
-    vm: vNode.component!
+    vm: vNode.component!,
+    destory
   }
   instanceList.push(instance)
 
-  return instanceList
+  return instance
 }
 
 export const getLastInstance = () => {
@@ -45,7 +54,13 @@ export const getLastBottomOffset = (id: string) => {
   if (idx <= 0) {
     return 0
   } else {
-    const prev = instanceList.at(idx - 1)
+    const prev = instanceList[idx - 1]
     return prev?.vm.exposed!.bottomOffset.value
   }
+}
+
+export const closeAll = () => {
+  instanceList.forEach((instance) => {
+    instance.destory()
+  })
 }
