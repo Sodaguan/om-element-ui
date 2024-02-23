@@ -31,9 +31,9 @@ defineExpose({
   >
     <om-icon icon="spinner" spin v-if="loading" />
     <om-icon :icon="icon" v-if="icon" />
-    <span>
+    <template v-if="!circle">
       <slot></slot>
-    </span>
+    </template>
   </button>
 </template>
 

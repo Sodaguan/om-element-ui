@@ -16,13 +16,18 @@
 
 .el-popper__arrow {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   z-index: -2;
   pointer-events: none;
   background: var(--el-bg-color-overlay);
   border: 1px solid var(--el-border-color-light);
   transform: rotate(45deg);
+}
+
+.el-popper__inner {
+  width: 100%;
+  background: var(--el-bg-color-overlay);
 }
 
 .fade-enter-active,

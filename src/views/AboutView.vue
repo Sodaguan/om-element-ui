@@ -5,6 +5,8 @@ import type { TooltipInstance } from '@/components/Tooltip/types'
 import type { Placement, UseFloatingOptions } from '@floating-ui/vue'
 import { h, ref } from 'vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
+import omInput from '@/components/Input/omInput.vue'
+import omSwitch from '@/components/Switch/omSwitch.vue'
 
 const placement = ref<Placement>('bottom')
 const trigger = ref<'click'>('click')
@@ -66,6 +68,13 @@ const visibleChange = (e: boolean) => {
       </om-dropdown>
       <br />
       <button @click="dropdownOpen">button1</button>
+    </div>
+    <div>
+      <om-input clearable></om-input>
+      <om-input show-password></om-input>
+    </div>
+    <div>
+      <om-switch></om-switch>
     </div>
   </div>
 </template>

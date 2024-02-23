@@ -76,7 +76,7 @@ describe('omButton.vue', () => {
     })
     console.log(wrapper.html())
     const iconElement = wrapper.findComponent(omIcon)
-    expect(iconElement.exists()).toBeTruthy()
+    expect(iconElement.s()).toBeTruthy()
     expect(iconElement.attributes('icon')).toBe('spinner')
     expect(wrapper.attributes('disabled')).toBeDefined()
     expect(wrapper.emitted()).not.toHaveProperty('click')
