@@ -7,6 +7,8 @@ import { h, ref } from 'vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 import omInput from '@/components/Input/omInput.vue'
 import omSwitch from '@/components/Switch/omSwitch.vue'
+import omSelect from '@/components/Select/omSelect.vue'
+import remote from '@/components/Select/Remote.vue'
 
 const placement = ref<Placement>('bottom')
 const trigger = ref<'click'>('click')
@@ -38,6 +40,8 @@ const visibleChange = (e: boolean) => {
   console.log(e)
   console.log(dropdownInstance.value)
 }
+
+const selectValue = ref('1')
 </script>
 
 <template>
@@ -75,6 +79,12 @@ const visibleChange = (e: boolean) => {
     </div>
     <div>
       <om-switch></om-switch>
+    </div>
+    <div>
+      <om-select v-model="selectValue"></om-select>
+    </div>
+    <div>
+      <remote></remote>
     </div>
   </div>
 </template>

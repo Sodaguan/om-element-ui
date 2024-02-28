@@ -20,3 +20,7 @@ export interface InputEmits {
   (e: 'input', value: string): void
   (e: 'change', value: string): void
 }
+
+export interface InputInstance {
+  ref: HTMLInputElement | HTMLTextAreaElement
+}

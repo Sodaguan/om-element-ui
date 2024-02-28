@@ -71,21 +71,22 @@ defineExpose({
       'el-input-group': $slots.prepend || $slots.append
     }"
   >
-    <div
-      class="el-input__wrapper"
-      :class="{
-        'is-focus': isFocus
-      }"
-    >
-      <template v-if="type !== 'textarea'">
-        <!-- prepend -->
-        <div v-if="$slots.prepend" class="el-input-group__prepend">
-          <slot name="prepend"></slot>
-        </div>
+    <template v-if="type !== 'textarea'">
+      <!-- prepend -->
+      <div v-if="$slots.prepend" class="el-input-group__prepend">
+        <slot name="prepend"></slot>
+      </div>
+      <div
+        class="el-input__wrapper"
+        :class="{
+          'is-focus': isFocus
+        }"
+      >
         <!-- prefix -->
         <span v-if="$slots.prefix" class="el-input__prefix">
           <slot name="prefix"></slot>
         </span>
+        <!-- input -->
         <input
           :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :placeholder="placeholder"
@@ -115,7 +116,7 @@ defineExpose({
               icon="circle-xmark"
               class="el-input__icon el-input__clear"
               v-show="showClear"
-              @click="clear"
+              @click.stop="clear"
               @mousedown.prevent
             />
             <om-icon
@@ -132,29 +133,29 @@ defineExpose({
             />
           </span>
         </span>
-        <!-- append -->
-        <div v-if="$slots.append" class="el-input-group__append">
-          <slot name="append"></slot>
-        </div>
-      </template>
-      <template v-else>
-        <textarea
-          :placeholder="placeholder"
-          :disabled="disabled"
-          :autocomplete="autocomplete"
-          :readonly="readonly"
-          :autofocus="autofoucs"
-          :form="form"
-          class="el-textarea__inner"
-          ref="inputRef"
-          v-bind="attrs"
-          v-model="inputValue"
-          @input="handleInput"
-          @change="handleChange"
-          @focus="handleFoucs"
-          @blur="handleBlur"
-        ></textarea>
-      </template>
-    </div>
+      </div>
+      <!-- append -->
+      <div v-if="$slots.append" class="el-input-group__append">
+        <slot name="append"></slot>
+      </div>
+    </template>
+    <template v-else>
+      <textarea
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :autocomplete="autocomplete"
+        :readonly="readonly"
+        :autofocus="autofoucs"
+        :form="form"
+        class="el-textarea__inner"
+        ref="inputRef"
+        v-bind="attrs"
+        v-model="inputValue"
+        @input="handleInput"
+        @change="handleChange"
+        @focus="handleFoucs"
+        @blur="handleBlur"
+      ></textarea>
+    </template>
   </div>
 </template>

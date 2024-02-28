@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useFloating, offset, arrow, autoUpdate } from '@floating-ui/vue'
+import { useFloating, offset, arrow, autoUpdate, size } from '@floating-ui/vue'
 import type { TooltipEmits, TooltipProps, TooltipInstance } from './types'
 import { reactive, ref, withDefaults, watch, computed } from 'vue'
-import tooltipClickOutside from '@/hooks/tooltipClickOutside'
 import { debounce } from 'lodash-es'
+import useClickOutside from '@/hooks/useClickOutside'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'right',
@@ -26,7 +26,17 @@ const floatingOptions = computed(() => {
   return {
     placement: props.placement,
     whileElementsMounted: autoUpdate,
-    middleware: [offset(6), arrow({ element: floatingArrow })],
+    middleware: [
+      offset(6),
+      arrow({ element: floatingArrow }),
+      size({
+        apply({ rects }) {
+          Object.assign(popperNode.value!.style, {
+            width: `${rects.reference.width}px`
+          })
+        }
+      })
+    ],
     ...props.floatingOptions
   }
 })
@@ -39,13 +49,16 @@ const { middlewareData, floatingStyles } = useFloating(triggerNode, popperNode, 
   }
 })
 
-tooltipClickOutside(popperContainerNode, () => {
+useClickOutside(popperContainerNode, () => {
   if (props.trigger === 'click' && isOpen.value && !props.manual) {
     close()
   }
+  if (isOpen.value) {
+    emits('click-outside', true)
+  }
 })
 
-const clickEvent = () => {
+const togglePopper = () => {
   if (isOpen.value) {
     close()
   } else if (!isOpen.value) {
@@ -80,7 +93,7 @@ let event: Record<string, any> = reactive({})
 let outEvent: Record<string, any> = reactive({})
 const registerEvent = () => {
   if (props.trigger === 'click') {
-    event['click'] = clickEvent
+    event['click'] = togglePopper
   } else if (props.trigger === 'hover') {
     event['mouseenter'] = open
     outEvent['mouseleave'] = close

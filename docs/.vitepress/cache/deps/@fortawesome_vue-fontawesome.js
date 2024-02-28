@@ -1,15 +1,15 @@
 import {
+  computed,
+  defineComponent,
+  h,
+  watch
+} from "./chunk-XJZ34XUT.js";
+import {
   config$1,
   icon,
   parse$1,
   text
 } from "./chunk-2KQZH5BE.js";
-import {
-  computed,
-  defineComponent,
-  h,
-  watch
-} from "./chunk-RBH54IHM.js";
 
 // node_modules/@fortawesome/vue-fontawesome/index.es.js
 function ownKeys(object, enumerableOnly) {

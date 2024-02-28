@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, type Ref } from 'vue'
 
-const tooltipClickOutside = (
+const useClickOutside = (
   elementRef: Ref<HTMLElement | undefined>,
   callback: (e: MouseEvent) => void
 ) => {
@@ -20,4 +20,4 @@ const tooltipClickOutside = (
   })
 }
 
-export default tooltipClickOutside
+export default useClickOutside
